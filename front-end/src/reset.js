@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import React, { useState,useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 
 import Vector1Image from './assests/im/Vector_1.png';
@@ -263,6 +263,14 @@ const Vector3 = styled("img")({
   top: `66px`,
 });
 
+const EcoBlub = styled("img")({
+  height: `375px`,
+  width: `375px`,
+  objectFit: `cover`,
+  position: `absolute`,
+  left: `786px`,
+  top: `213px`,
+});
 
 function NewPassword() {
     

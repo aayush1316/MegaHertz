@@ -1,10 +1,10 @@
-#include<ESP8266WiFi.h>   
-#include <ESP8266WebServer.h>
-
+#include<ESP8266WiFi.h>   //HEADER FILE FOR ESP8266
+#include <ESP8266WebServer.h> //HEADER FILE TO CREATE WEB_SERVER
+//WIFI_SSID AND PASSWORD
 #define WIFI_SSID "Django"        
 #define WIFI_PSWD "123456789" 
 
-ESP8266WebServer server(80);
+ESP8266WebServer server(80);//OBJECT FOR WEBSERVER
 
 const int relayPin1 = 2;
 const int relayPin2 =0;
@@ -48,8 +48,10 @@ void handleOff2() {
   server.send(200, "text/plain", "Relay turned off");
 }
 void setup() {
+  //PIN MODE SETUP TO OUTPUT
   pinMode(relayPin1, OUTPUT);
   pinMode(relayPin2, OUTPUT);
+  //INITILIZING THE RELAYPIN TO LOW WHICH MEANS ON STATE HIGH OFF (NEGATIVE LOGIC)
   digitalWrite(relayPin1, LOW); 
   digitalWrite(relayPin2, LOW); 
   Serial.begin(115200);         

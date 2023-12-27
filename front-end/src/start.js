@@ -1,6 +1,11 @@
 import React from 'react';
+import  { useState,useEffect } from 'react';
+
 import {useNavigate} from 'react-router-dom';
-import RenewbleEnergyImage from './assests/im/battery.png';
+
+import EcoBlubImage from './assests/images/eco_bulb.png';
+
+import EcoBulb from './assests/images/eco_bulb_on.png';
 
 import styled from "styled-components";
 
@@ -104,9 +109,22 @@ const LetSGetStarted = styled.h1({
 function Reset() {
     const navigate=useNavigate();
     const hello='LetSGetStarted';
+    const [imageIndex, setImageIndex] = useState(0);
+    const images = [EcoBlubImage,EcoBulb];
+      useEffect(() => {
+        // Set up an interval to toggle between two images every 5 seconds
+        const intervalId = setInterval(() => {
+          // Update the image index to toggle between 0 and 1
+          setImageIndex((prevIndex) => (prevIndex === 0 ? 1 : 0));
+        }, 500);
+    
+        // Cleanup the interval when the component unmounts
+        return () => clearInterval(intervalId);
+      }, []);
+    
   return (
     <Reset1>
-      <RenewbleEnergy src={RenewbleEnergyImage} loading='lazy' alt={"renewble energy"}/>
+      <RenewbleEnergy src={images[imageIndex]} loading='lazy' alt={"renewble energy"}/>
       <Megahertz>
         <MegahertzSpan1 >{`Megahert`}</MegahertzSpan1>
         <MegahertzSpan2 >{`z`}</MegahertzSpan2>

@@ -9,9 +9,9 @@ const bcrypt = require('bcryptjs')
 
 app.use(cors())
 app.use(express.json())
-
+//CONNECTING WITH THE MOGODB CLUSTER 
 mongoose.connect('mongodb+srv://aayush13:cseisLOVE@cluster0.c7n8ufu.mongodb.net/')
-
+//FOR SIGNUP
 app.post('/api/signup', async (req, res) => {
 	console.log(req.body)
 	try{
@@ -26,7 +26,7 @@ app.post('/api/signup', async (req, res) => {
 		res.json({ status: 'error', error: 'Duplicate email' })
 	}
 })
-
+//FOR LOGIN
 app.post('/api/login', async (req, res) => {
 	
 	const user = await User.findOne({
@@ -70,13 +70,13 @@ app.post('/api/forgot-password', async (req, res) => {
         var transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-        user: '077bel001.aayush@pcampus.edu.np',
-        pass: 'ektuis@Love98'
+        user: '077bel001.aayush@pcampus.edu.np',//WRITE YOUR EMAIL
+        pass: ''//WRITE YOUR PASSWORD
        }
         });
 
         var mailOptions = {
-            from: '077bel001.aayush@pcampus.edu.np',
+            from: '077bel001.aayush@pcampus.edu.np',//WRITE YOUR EMAIL
             to:email,
             subject: 'Reset Your Password',
             text: `http://localhost:3000/reset-password/${user._id}/${token}`
@@ -92,7 +92,7 @@ app.post('/api/forgot-password', async (req, res) => {
 
 	})	
 })
-
+//RESET PASSWORD 
 app.post('/api/reset-password/:id/:token',(req,res)=>{
 	const {id,token}=req.params
 	const {password}=req.body

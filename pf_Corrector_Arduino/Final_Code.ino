@@ -3,14 +3,14 @@ void Correction(int x);
 void Print();
 void OC_Print();
 void CB_Print();
-#include<LiquidCrystal.h>
-LiquidCrystal LCD(13,12,11,10,9,8);
+#include<LiquidCrystal.h>//importing the header files for LCD-PANEL
+LiquidCrystal LCD(13,12,11,10,9,8);//PINS OF LCD MODULE
 
 float PF, Angle;
 int dur = 0;
 int Case = 0;
 float IL,IL1;
-
+//FOR RELAY MODULES 
 int R1 = 1;
 int R2 = 2;
 int R3 = 3;
@@ -19,16 +19,16 @@ int ReadDur = 0;
 
 
 void setup() {
-  
+  //TURNING THE LCD PANEL 
   LCD.begin(20, 4);
-  
+  //SETTING UP THE PINS FOR INPUT
   pinMode(ReadDur, INPUT);
   pinMode(A0,INPUT);
   pinMode(R1, OUTPUT);
   pinMode(R2, OUTPUT);
   pinMode(R3, OUTPUT);
   pinMode(R4, OUTPUT);
-
+//INITIZING THE STATE OF RELAY_MODULE TO LOW 
   digitalWrite(R1, LOW);
   digitalWrite(R2, LOW);
   digitalWrite(R3, LOW);
@@ -115,7 +115,10 @@ while(PF<0.95)
 
 
  
-
+//MEASURING THE POWER FACTOR 
+//POWER FACTOR=cosine(phase_angle)
+//phase_angle=360*f*time_lag where f=frequency f=50Hz in Nepal 
+//time lag is given by analog pin A0
 void Measure()
 {
   dur = pulseIn(ReadDur, HIGH);
@@ -126,7 +129,7 @@ void Measure()
  delay(500);
  IL1= analogRead(A0);
 }
-
+//PRINTING THE DATA TO THE LCD_MODLE
 void Print()
 {
   LCD.setCursor(0,3);
@@ -156,8 +159,9 @@ void CB_Print()
   LCD.print("      CONNECTED");
   }
 
-
-  
+//MAKING THE DIFFERENT COMBINATION OF CAPACITOR
+//WHEN X=1 BINARY OF 1 =0001 //NEGATIVE LOGIC LOW-1 AND HIGH-0 //LOW PINS TRIGGER THE RELAY_ON
+//WHEN X=2 BINARY OF 2=0010  HIGH HIGH LOW HIGH 
 void Correction(int x)
 {
   if(x==1)
