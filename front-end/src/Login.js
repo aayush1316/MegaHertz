@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
@@ -17,7 +17,11 @@ import Vector3Image from './assests/images/Vector.png';
 
 import Vector4Image from './assests/images/Vector.png';
 
-import EcoBlubImage from './assests/images/eco_blub.png';
+import EcoBlubImage from './assests/images/eco_bulb.png';
+
+import EcoBulb from './assests/images/eco_bulb_on.png';
+
+import VectrImage from './assests/img/group.png';
 
 import styled from "styled-components";
 
@@ -265,8 +269,7 @@ const Password = styled.input({
   left: `54px`,
   top: `17px`,
 });
-
-const ForgotYourPassword = styled.link({
+const Register = styled("div")({
   textAlign: `left`,
   whiteSpace: `pre-wrap`,
   fontSynthesis: `none`,
@@ -281,7 +284,26 @@ const ForgotYourPassword = styled.link({
   width: `184.8px`,
   height: `28.8px`,
   position: `absolute`,
-  left: `176px`,
+  left: `40px`,
+  top: `409px`,
+});
+
+const ForgotYourPassword = styled("div")({
+  textAlign: `left`,
+  whiteSpace: `pre-wrap`,
+  fontSynthesis: `none`,
+  color: `rgba(190, 190, 190, 1)`,
+  fontStyle: `normal`,
+  fontFamily: `Lato`,
+  fontWeight: `400`,
+  fontSize: `18px`,
+  letterSpacing: `0px`,
+  textDecoration: `none`,
+  textTransform: `none`,
+  width: `184.8px`,
+  height: `28.8px`,
+  position: `absolute`,
+  left: `190px`,
   top: `409px`,
 });
 
@@ -304,38 +326,17 @@ const SignIn = styled.button({
   top: `492px`,
 });
 
-const Group3 = styled("div")({
-  display: `flex`,
+
+
+const Group3 = styled.img({
+  height: `50px`,
+  width: `50px`,
   position: `absolute`,
-  isolation: `isolate`,
-  flexDirection: `row`,
-  justifyContent: `flex-start`,
-  alignItems: `flex-start`,
-  padding: `0px`,
-  boxSizing: `border-box`,
-  width: `67.2px`,
-  height: `40.8px`,
-  left: `196px`,
-  top: `492px`,
+  left: `480px`,
+  top: `640px`,
 });
 
-const Rectangle2 = styled("div")({
-  background: `linear-gradient(121.26deg, rgba(249, 119, 148, 1) -2.8809074257922804e-15%, rgba(98, 58, 162, 1) 100%)`,
-  borderRadius: `20.400001525878906px`,
-  width: `67.2px`,
-  height: `40.8px`,
-  position: `absolute`,
-  left: `0px`,
-  top: `0px`,
-});
 
-const Vector3 = styled("img")({
-  height: `21.6px`,
-  width: `21.6px`,
-  position: `absolute`,
-  left: `66px`,
-  top: `53px`,
-});
 
 const EcoBlub = styled("img")({
   height: `375px`,
@@ -429,6 +430,21 @@ function MacBookAir1() {
             [name]:value
           }))
         }
+        
+        const [imageIndex, setImageIndex] = useState(0);
+        const images = [EcoBlubImage,EcoBulb];
+          useEffect(() => {
+            // Set up an interval to toggle between two images every 5 seconds
+            const intervalId = setInterval(() => {
+              // Update the image index to toggle between 0 and 1
+              setImageIndex((prevIndex) => (prevIndex === 0 ? 1 : 0));
+            }, 500);
+        
+            // Cleanup the interval when the component unmounts
+            return () => clearInterval(intervalId);
+          }, []);
+        
+        
   return (
     <MacBookAir11>
       <Frame15 src={Frame15Image} loading='lazy' alt={"Frame 15"}/>
@@ -473,25 +489,23 @@ function MacBookAir1() {
             required
           />
         </Group2>
-
+        <ForgotYourPassword> <Link to ='/forgot'>ForgotYourPassword</Link>
+        </ForgotYourPassword>
+        <Register> <Link to ='/registration'>Register Here</Link></Register>
         <SignIn
           type='submit'
           onClick={handleLoginSubmit}
         >{`SignIn`}</SignIn>
        
         
-        <Group3>
-          <Rectangle2>
-          </Rectangle2>
-          
-          <Vector3 src={Vector3Image} loading='lazy' alt={"Vector"}/>
-        </Group3>
+ 
       </Frame18>
-      <EcoBlub src={EcoBlubImage} loading='lazy' alt={"eco blub"}/>
-      
+      <EcoBlub src={images[imageIndex]} loading='lazy' alt={"eco blub"}/>
+      <Group3 src={VectrImage} loading='lazy' alt={"Vector"}>
+      </Group3>
     </MacBookAir11>);
 
-  }
+}
 
 export default MacBookAir1;
 

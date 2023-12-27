@@ -1,12 +1,16 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react';
+
+import { Link, useNavigate} from 'react-router-dom';
 import axios from 'axios'
-import { Link } from 'react-router-dom'
+
 
 import Vector1Image from './assests/imgr/Vector1.png';
 
 import Frame17Image from './assests/imgr/Frame_17.png';
 
-import EcoBlubImage from './assests/imgr/eco_bulb.png';
+import EcoBlubImage from './assests/images/eco_bulb.png';
+
+import EcoBulb from './assests/images/eco_bulb_on.png'
 
 import VectorImage from './assests/imgr/Vector6.png';
 
@@ -16,7 +20,8 @@ import Vector3Image from './assests/imgr/Vector4.png';
 
 import IconsImage from './assests/imgr/Icons.png';
 
-import Vector4Image from './assests/imgr/Vector5.png';
+
+import VectrImage from './assests/img/group.png';
 
 import styled from "styled-components";
 
@@ -388,42 +393,36 @@ const Create = styled.button({
   top: `497px`,
 });
 
-const Group3 = styled("div")({
-  display: `flex`,
-  position: `absolute`,
-  isolation: `isolate`,
-  flexDirection: `row`,
-  justifyContent: `flex-start`,
-  alignItems: `flex-start`,
-  padding: `0px`,
-  boxSizing: `border-box`,
-  width: `72.8px`,
-  height: `44.2px`,
-  left: `317px`,
-  top: `497px`,
-});
 
-const Rectangle2 = styled("div")({
-  background: `linear-gradient(121.26deg, rgba(249, 119, 148, 1) -2.880907317655319e-15%, rgba(98, 58, 162, 1) 100%)`,
-  borderRadius: `22.100000381469727px`,
-  width: `72.8px`,
-  height: `44.2px`,
+
+
+const Megahertz = styled("div")({
+  textAlign: `center`,
+  whiteSpace: `pre-wrap`,
+  fontSynthesis: `none`,
+  color: `rgba(38, 38, 38, 1)`,
+  fontStyle: `normal`,
+  fontFamily: `Lato`,
+  fontWeight: `700`,
+  fontSize: `76.80000305175781px`,
+  letterSpacing: `0px`,
+  textDecoration: `none`,
+  textTransform: `none`,
+  width: `379px`,
+  height: `100px`,
   position: `absolute`,
   left: `0px`,
-  top: `0px`,
+  top: `-100px`,
 });
-
-const Vector4 = styled("img")({
-  height: `23.4px`,
-  width: `23.4px`,
+const Group3 = styled.img({
+  height: `50px`,
+  width: `50px`,
   position: `absolute`,
-  left: `71px`,
-  top: `57px`,
+  left: `340px`,
+  top: `500px`,
 });
-
-
 function CreateAccount() {
-    
+     const navigate=useNavigate();
      const [registrationData,setRegistrationData] = useState({
             username:'',
             email:'',
@@ -440,12 +439,17 @@ function CreateAccount() {
     }))
     
     }
-    
+   
     const handleRegistrationSubmit = async(e) => {
+
     e.preventDefault();
     try{
         const response = await axios.post('http://localhost:8000/api/signup',registrationData);
         console.log(response.data);
+        const success = response.data;
+        if(success){
+         navigate("/login");
+        }
     }
     catch(error){
         console.log(error)
@@ -456,6 +460,18 @@ function CreateAccount() {
         password:'',
     })
    }
+   const [imageIndex, setImageIndex] = useState(0);
+   const images = [EcoBlubImage,EcoBulb];
+     useEffect(() => {
+       // Set up an interval to toggle between two images every 5 seconds
+       const intervalId = setInterval(() => {
+         // Update the image index to toggle between 0 and 1
+         setImageIndex((prevIndex) => (prevIndex === 0 ? 1 : 0));
+       }, 500);
+   
+       // Cleanup the interval when the component unmounts
+       return () => clearInterval(intervalId);
+     }, []);
   return (
     <CreateAccount1>
       <Frame15>
@@ -463,9 +479,12 @@ function CreateAccount() {
       </Frame15>
       <Frame17 src={Frame17Image} loading='lazy' alt={"Frame 17"}/>
       <Frame20>
-        <EcoBlub src={EcoBlubImage} loading='lazy' alt={"eco blub"}/>
+        <EcoBlub src={images[imageIndex]} loading='lazy' alt={"eco blub"}/>
       </Frame20>
       <Frame19>
+      <Megahertz>
+          {`Megahertz`}
+        </Megahertz>
         <CreateAccount2>
           {`Create account`}
         </CreateAccount2>
@@ -522,12 +541,9 @@ function CreateAccount() {
         <Create type='button' onClick={handleRegistrationSubmit}>
           {`Create`}
         </Create>
-       
-        <Group3>
-          <Rectangle2>
-          </Rectangle2>
-          <Vector4 src={Vector4Image} loading='lazy' alt={"Vector"}/>
-        </Group3>
+        
+
+        <Group3 src={VectrImage} loading='lazy' alt={"Vector"}></Group3>
       </Frame19>
     </CreateAccount1>);
 

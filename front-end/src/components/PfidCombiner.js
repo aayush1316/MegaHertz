@@ -15,9 +15,9 @@ const PfidCombiner1 = styled("div")({
   padding: `0px`,
   boxSizing: `border-box`,
   width: `623px`,
-  height: `243px`,
-  left: `640px`,
-  top: `565px`,
+  height: `264px`,
+  left: `100px`,
+  top: `272px`,
   overflow: `hidden`,
 });
 

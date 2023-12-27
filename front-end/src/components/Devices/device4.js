@@ -17,7 +17,7 @@ const DeviceOner1 = styled("div")({
   padding: `0px`,
   boxSizing: `border-box`,
   overflow: `hidden`,
-  left: `100px`,
+  left: `760px`,
   top: `150px`,
 });
 
@@ -64,7 +64,7 @@ const BulbOnSvgrepoCom1 = styled("img")({
 });
 
 
-function DeviceOn1() {
+function DeviceOn4() {
       // Use state to manage the button state, initially set to 'On'
       const [buttonState, setButtonState] = useState('ON');
       const [imgState,setImgState]        =useState(BulbOnSvgrepoCom1Image)
@@ -79,7 +79,7 @@ function DeviceOn1() {
         if(button==='OFF'){
           const fetchData = async () => {
             try {
-              const response = await fetch('http://192.168.18.91/on1');
+              const response = await fetch('http://192.168.18.91/on4');
               if (response.ok) {
                 const data = await response.json();
                 console.log('Data from server:', data);
@@ -99,7 +99,7 @@ function DeviceOn1() {
         else{
           const fetchData = async () => {
             try {
-              const response = await fetch('http://192.168.18.91/off1');
+              const response = await fetch('http://192.168.18.91/off4');
               if (response.ok) {
                 const data = await response.json();
                 console.log('Data from server:', data);
@@ -120,7 +120,7 @@ function DeviceOn1() {
   return (
     <DeviceOner1>
       <DeviceA>
-        {`Device A`}
+        {`Device D`}
       </DeviceA>
       <On  onClick={handleButtonClick}>
         {buttonState}
@@ -130,6 +130,6 @@ function DeviceOn1() {
 
   }
 
-export default DeviceOn1;
+export default DeviceOn4;
 
   
