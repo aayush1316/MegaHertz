@@ -266,6 +266,7 @@ const CorrectionComplete = styled("div")({
 
 
 function PfCorrector() {
+ 
   return (
     <PfCorrector1>
       <Frame5>
@@ -274,7 +275,7 @@ function PfCorrector() {
             {`Corrected p.f. Value`}
           </CorrectedPFValue>
           <Q095>
-            {`0.95`}
+            {`0`}
           </Q095>
         </Frame4>
       </Frame5>
@@ -287,7 +288,7 @@ function PfCorrector() {
             {`Power Factor Value`}
           </PowerFactorValue>
           <Q067>
-            {`0.68`}
+            {'0.00'}
           </Q067>
         </Frame41>
       </Frame6>
@@ -297,13 +298,13 @@ function PfCorrector() {
             {`Phase Angle`}
           </PhaseAngle>
           <Q303Degree>
-            {`-30.3 degree`}
+            {`NO_LOAD`}
           </Q303Degree>
         </Frame42>
       </Frame8>
       <Frame7>
         <CorrectionComplete>
-          {`Correction Complete`}
+          {`NO_LOAD`}
         </CorrectionComplete>
       </Frame7>
     </PfCorrector1>);

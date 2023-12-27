@@ -21,7 +21,7 @@ app.post('/api/signup', async (req, res) => {
 			email: req.body.email,
 			password: newPassword,
 		})
-		res.json({ status: 'ok' })
+		res.json({ status:200 })
 	} catch (err) {
 		res.json({ status: 'error', error: 'Duplicate email' })
 	}
