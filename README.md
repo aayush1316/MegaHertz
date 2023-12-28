@@ -47,7 +47,7 @@ To get started with MEGAHERTZ, follow these steps:
 
      - **Run React.js App:**
        ```bash
-       cd client
+       cd front-end
        npm install
        npm start
        ```
