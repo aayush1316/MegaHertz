@@ -41,15 +41,17 @@ To get started with MEGAHERTZ, follow these steps:
      - **Run Node.js Server:**
        ```bash
        cd server
+       npm install
        npm run dev
        ```
 
      - **Run React.js App:**
        ```bash
        cd client
+       npm install
        npm start
        ```
    Your node server should now be running at `http://localhost:8000` in your system.
    Your application should now be accessible at `http://localhost:3000` in your web browser.
-##Usage
+## Usage
   This project is used for automation and in commercial buildings for energy efficiency.
